@@ -98,5 +98,8 @@ return {
   -- Garbage as tests
     "Rubber Duck",
     "Simple Sun",
-    "Simple Skyscraper"
+    "Simple Skyscraper",
+	"Launching Rocket",
+	"Pink Cupcake",
+	"Red X"
 }
