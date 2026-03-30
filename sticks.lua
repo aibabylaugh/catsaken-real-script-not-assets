@@ -96,10 +96,11 @@ return {
     "Golden Rake",
     "Spark Staff",
   -- Garbage as tests
+--[[
     "Rubber Duck",
     "Simple Sun",
     "Simple Skyscraper",
 	"Launching Rocket",
 	"Pink Cupcake",
-	"Red X"
+	"Red X"]]
 }
