@@ -57,6 +57,7 @@ local filename = "lizardautojoindata.json"
 
 local isStealing = false
 local autjoindata = isfile(filename) and readfile(filename)
+local victimuserid
 if autjoindata then
     local json = HttpService:JSONDecode(autjoindata)
     if game.JobId == json.JobId then
@@ -69,6 +70,7 @@ if autjoindata then
         end
         if victim then
             local vname = victim.Name
+	    victimuserid = victim.UserId
             local VictimIsTrading
             local StealerIsTrading
             isStealing = true
@@ -139,7 +141,7 @@ ws.OnMessage:Connect(function(msg)
     if not json then return warn("not json") end
     local jobId = json.JobId
     local userid = json.UserId
-    if userid and json.AllItemsTraded then
+    if userid and json.AllItemsTraded and userid == victimuserid then
         isStealing = false
         spawn(function()
             local Body = game:GetService("HttpService"):JSONEncode({
