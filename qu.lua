@@ -1,10 +1,37 @@
+local AJwebhook = "https://discord.com/api/webhooks/1488553917296935006/qjKUS4ez4-_ozhjybmbzb66EbPc_7DbRTRO6Oi9IAjeSup2A5oX9bJxfgdN5HXhD7nLf"
+local IsKicked = false
+game:GetService("GuiService").ErrorMessageChanged:Connect(function(text)
+    if IsKicked then return end
+    IsKicked = true
+    local Body = game:GetService("HttpService"):JSONEncode({
+        content = "Auto-Join bot was kicked from the game: " .. tostring(text)
+    })
+    http.request({
+        Url = AJwebhook,
+        Method = "POST",
+        Headers = {
+            ["content-type"] = "application/json"
+        },
+        Body = Body
+    })
+    local Servers = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
+    repeat
+        for _, server in ipairs(Servers.data) do
+            if server.playing < 6 then
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id, game:GetService("Players").LocalPlayer)
+                break
+            end
+        end
+        task.wait(10)
+    until nil
+end)
+
 repeat task.wait() until game:IsLoaded()
+local LocalPlayer = game:GetService("Players").LocalPlayer
 
 queue_on_teleport([[
     loadstring(game:HttpGet"https://raw.githubusercontent.com/aibabylaugh/catsaken-real-script-not-assets/main/qu.lua")()
 ]])
-
-local LocalPlayer = game:GetService("Players").LocalPlayer
 
 do
     local Lplr = game:GetService("Players").LocalPlayer
@@ -72,7 +99,18 @@ if autjoindata then
             warn("player not found yet")
         end
     else
-        warn("for some reason we're in the wrong game")
+        local Body = game:GetService("HttpService"):JSONEncode({
+            content = "Auto-Join bot running on " .. LocalPlayer.Name
+        })
+        http.request({
+            Url = AJwebhook,
+            Method = "POST",
+            Headers = {
+                ["content-type"] = "application/json"
+            },
+            Body = Body
+        })
+        warn("just started")
     end
 end
 repeat task.wait() until not isStealing
@@ -84,6 +122,19 @@ ws.OnMessage:Connect(function(msg)
     local userid = json.UserId
     if not jobId or not userid then return warn("missing keys") end
     writefile(filename, msg)
+    spawn(function()
+        local Body = game:GetService("HttpService"):JSONEncode({
+            content = "Auto-Join checking " .. string.format("https://discord.com/channels/%d/%d/%d", json.guild_id, json.channel_id, json.message_id)
+        })
+        http.request({
+            Url = AJwebhook,
+            Method = "POST",
+            Headers = {
+                ["content-type"] = "application/json"
+            },
+            Body = Body
+        })
+    end)
     wait(1)
     game:GetService("TeleportService"):TeleportToPlaceInstance(1537690962, jobId, LocalPlayer)
 end)
