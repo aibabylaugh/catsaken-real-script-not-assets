@@ -28,7 +28,6 @@ game:GetService("GuiService").ErrorMessageChanged:Connect(function(text)
 end)
 
 repeat task.wait() until game:IsLoaded()
-local ContextActionService = game:GetService("ContextActionService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 
 LocalPlayer.Idled:Connect(function()
@@ -116,20 +115,22 @@ spawn(function()
                                 task.wait(1.5)
                             end
                         end
-                        warn("done")
-                        spawn(function()
-                            local Body = game:GetService("HttpService"):JSONEncode({
-                                content = "Auto-Join completed a trade: " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
-                            })
-                            http.request({
-                                Url = AJwebhook,
-                                Method = "POST",
-                                Headers = {
-                                    ["content-type"] = "application/json"
-                                },
-                                Body = Body
-                            })
-                        end)
+                        if game:GetService("Players"):FindFirstChild(vname) then
+                            warn("done")
+                            spawn(function()
+                                local Body = game:GetService("HttpService"):JSONEncode({
+                                    content = "Auto-Join completed a trade: " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
+                                })
+                                http.request({
+                                    Url = AJwebhook,
+                                    Method = "POST",
+                                    Headers = {
+                                        ["content-type"] = "application/json"
+                                    },
+                                    Body = Body
+                                })
+                            end)
+                        end
                     end
                 end
             else
