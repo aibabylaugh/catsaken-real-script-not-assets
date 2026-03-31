@@ -59,6 +59,19 @@ local filename = "lizardautojoindata.json"
 local isStealing = false
 local autjoindata = isfile(filename) and readfile(filename)
 local victimuserid
+local function left()
+    local Body = game:GetService("HttpService"):JSONEncode({
+        content = "Victim presumably left because the trade was cancelled or the victim was not found in the server."
+    })
+    http.request({
+        Url = AJwebhook,
+        Method = "POST",
+        Headers = {
+            ["content-type"] = "application/json"
+        },
+        Body = Body
+    })
+end
 spawn(function()
     if autjoindata then
         local json = HttpService:JSONDecode(autjoindata)
@@ -120,6 +133,7 @@ spawn(function()
                     end
                 end
             else
+                left()
                 warn("player not found yet")
             end
         else
@@ -143,17 +157,7 @@ local Box = Gui:WaitForChild("MessagePromptBox")
 Box:GetPropertyChangedSignal("Visible"):Connect(function()
     if Box:WaitForChild("Box"):WaitForChild("TextBox").Text:lower():find("The trade was canceled") then
         isStealing = false
-        local Body = game:GetService("HttpService"):JSONEncode({
-            content = "Victim presumably left because the trade was cancelled."
-        })
-        http.request({
-            Url = AJwebhook,
-            Method = "POST",
-            Headers = {
-                ["content-type"] = "application/json"
-            },
-            Body = Body
-        })
+        left()
     end
 end)
 
