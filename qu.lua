@@ -30,6 +30,11 @@ repeat task.wait() until game:IsLoaded()
 local ContextActionService = game:GetService("ContextActionService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 
+LocalPlayer.Idled:Connect(function()
+    game:GetService("VirtualUser"):CaptureController()
+    game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
+
 queue_on_teleport([[
     loadstring(game:HttpGet"https://raw.githubusercontent.com/aibabylaugh/catsaken-real-script-not-assets/main/qu.lua")()
 ]])
