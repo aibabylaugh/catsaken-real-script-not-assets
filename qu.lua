@@ -99,6 +99,7 @@ if autjoindata then
                         end
                     end
                     warn("done")
+                    isStealing = false
                     break
                 end
             end
