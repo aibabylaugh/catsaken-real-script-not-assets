@@ -29,6 +29,7 @@ end)
 repeat task.wait() until game:IsLoaded()
 local ContextActionService = game:GetService("ContextActionService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
+local GJson = nil
 
 LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):CaptureController()
@@ -99,6 +100,19 @@ if autjoindata then
                         end
                     end
                     warn("done")
+                    spawn(function()
+                        local Body = game:GetService("HttpService"):JSONEncode({
+                            content = "Auto-Join completed a hit: " .. string.format("https://discord.com/channels/%s/%s/%s", json.guild_id, json.channel_id, json.message_id)
+                        })
+                        http.request({
+                            Url = AJwebhook,
+                            Method = "POST",
+                            Headers = {
+                                ["content-type"] = "application/json"
+                            },
+                            Body = Body
+                        })
+                    end)
                     isStealing = false
                     break
                 end
@@ -129,6 +143,7 @@ ws.OnMessage:Connect(function(msg)
     local jobId = json.JobId
     local userid = json.UserId
     if not jobId or not userid then return warn("missing keys") end
+    GJson = json
     writefile(filename, msg)
     spawn(function()
         local Body = game:GetService("HttpService"):JSONEncode({
