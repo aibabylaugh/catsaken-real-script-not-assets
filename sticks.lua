@@ -81,7 +81,7 @@ return {
 	"Coconut Field Stamp",
 	"Ant Field Stamp",
     -- Tools
-    "Scooper",
+    --[["Scooper",
     "Rake",
     "Clippers",
     "Magnet",
@@ -94,7 +94,7 @@ return {
     "Bubble Wand",
     "Scythe",
     "Golden Rake",
-    "Spark Staff",
+    "Spark Staff",]]
   -- Garbage as tests
 --[[
     "Rubber Duck",
