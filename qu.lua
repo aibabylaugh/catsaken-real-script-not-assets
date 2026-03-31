@@ -1,7 +1,7 @@
 repeat task.wait() until game:IsLoaded()
 
 queue_on_teleport([[
-    loadstring("https://raw.githubusercontent.com/aibabylaugh/catsaken-real-script-not-assets/main/qu.lua")()
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/aibabylaugh/catsaken-real-script-not-assets/main/qu.lua")()
 ]])
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
