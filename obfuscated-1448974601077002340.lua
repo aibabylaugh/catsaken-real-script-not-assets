@@ -10,11 +10,11 @@ _/ ___\\__  \\   __\/  ___/\__  \ |  |/ // __ \ /    \
 
 local maintenence = true
 if maintenence then
-  local StarterGui = game:GetService("StarterGui")
-  StarterGui:SetCore("SendNotification", {
+  local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+  return Fluent:Notify({
       Title = "Catsaken",
-      Text = "Catsaken (forsaken script) is currently not working, this message should not appear after 10-30 minutes.",
-      Duration = 5
+      Content = "Catsaken Remastered, the forsaken script you just ran, is currently not working due to a change in forsaken's internal systems or a severe error in catsaken remastered's code. Please wait up to 20 minutes for a fix to be applied",
+      Duration = 40
   })
 end
 
