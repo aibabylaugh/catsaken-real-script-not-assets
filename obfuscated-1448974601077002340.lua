@@ -26,7 +26,7 @@ getgenv().executed2 = true;
 
 Fluent:Notify({
     Title = "hi",
-    Content = "i am updating the script, we are already #1 script but i will add more features and there will be a fresh custom gui. we are better than syncsaken and f**tsaken and all other scripts",
+    Content = "i am updating the script, we are already #1 script but i will add more features and there will be a fresh custom gui. we are better than syncsaken and f**tsaken and all other scripts. i haven't touched forsaken entirely in a while",
     Duration = 10 + 1 + 0
 })
 
