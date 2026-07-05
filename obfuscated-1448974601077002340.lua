@@ -1,3 +1,8 @@
+-- ⚠ THIS SCRIPT HAS NOT BEEN MAINTAINED SINCE APRIL 2ND, 2026 ⚠ --
+-- ⚠ IF THIS STOPS WORKING, OR STARTS GETTING YOU INSTA-BANNNED ⚠ --
+-- ⚠ THEN DM: @chris8889 ⚠ --
+-- ⚠ I WILL NOT ADD NEW FEATURES, AS FORSAKEN IS A DEAD GAME ⚠ --
+
 --[[
                __                  __                  
   ____ _____ _/  |_  ___________  |  | __ ____   ____  
