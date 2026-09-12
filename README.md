@@ -1,1 +1,1 @@
-This script was created by mursufan1234 on discord (1445280568857071620 user id) Please do not run any copies of catsaken like https://scriptblox.com/script/WEEK-2-Forsaken-MegaSaken-keyless-best-script-227496 as they contain malicious software like stealers and ip-loggers
+This script was created by @beequips on discord (1193210607206408255 user id) Please do not run any copies of catsaken like https://scriptblox.com/script/WEEK-2-Forsaken-MegaSaken-keyless-best-script-227496 as they contain malicious software like stealers and ip-loggers
