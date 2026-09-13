@@ -24,7 +24,7 @@ end
 if identifyexecutor() == 'Arceus X' then
     return game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = identifyexecutor();
-        Text = "isn't supported, try delta!"
+        Text = "isn't supported, try delta!",
         Duration = 15;
         Button1 = "https://detlaexploits.gg";
     })
