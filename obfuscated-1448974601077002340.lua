@@ -1,15 +1,9 @@
-                                                              --[[
-  ／l、             
-（ﾟ､ ｡ ７          CATSAKEN [REMASTERED]
-  l  ~ヽ             
-  じしf_,)ノ       
-
-    If you're looking for a discord we don't have one.
-
-
-Catsaken is not open-source software, and its source code, features, and implementations are not provided for public use, copying, modification, or redistribution. The code is intentionally obfuscated to make it harder for others to extract, copy, or recreate its features without permission. Deobfuscating the script, obtaining leaked source code, or otherwise gaining access to its underlying implementation does not grant permission to use, copy, redistribute, or incorporate that code or its features into another project.
-
-
+--[[              Catsaken is not open-source software, and its source code, features, and implementations 
+                  are not provided for public use, copying, modification, or redistribution. The code is
+  ／l、           intentionally obfuscated to make it harder for others to extract, copy, or recreate its
+（ﾟ､ ｡ ７         features. Deobfuscating the script, obtaining leaked source code, or otherwise
+  l  ~ヽ          gaining access to its underlying implementation does not grant permission to use, copy,
+  じしf_,)ノ      redistribute, or incorporate that code or its features into another project.
 ]]
 
 if getthreadidentity() < 8 then
