@@ -48,6 +48,7 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = '',
         Text = "If loading screen is not ending, you need to clear your workspace for any catsaken files/folders",
         Duration = 15;
+    Callback = bindable;
         Button1 = "fix workspace";
        Button2 = "cancel"
     })
