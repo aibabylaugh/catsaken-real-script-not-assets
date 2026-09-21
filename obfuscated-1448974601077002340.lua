@@ -15,15 +15,6 @@ if getthreadidentity() < 8 then
     })
 end
 
-if identifyexecutor() == 'Arceus X' then
-    return game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = identifyexecutor();
-        Text = "isn't supported, try delta!",
-        Duration = 15;
-        Button1 = "https://detlaexploits.gg";
-    })
-end
-
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local maintenence = false
 if maintenence then
