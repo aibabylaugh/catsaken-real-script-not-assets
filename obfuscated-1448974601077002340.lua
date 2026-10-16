@@ -20,7 +20,7 @@ local maintenence = true
 if maintenence then
   return Fluent:Notify({
       Title = "Catsaken",
-      Content = "Catsaken Remastered, the forsaken script you just ran, is currently not working due to a change in forsaken's internal systems or a severe error in catsaken remastered's code. Please wait up to 20 minutes for a fix to be applied",
+      Content = "Catsaken Remastered, the forsaken script you just ran, is currently not working due to a change in forsaken's internal systems or a severe error in catsaken remastered's code. Please wait up to 2-3 days for a fix to be applied",
       Duration = 40
   })
 end
