@@ -16,7 +16,7 @@ if getthreadidentity() < 8 then
 end
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local maintenence = false
+local maintenence = true
 if maintenence then
   return Fluent:Notify({
       Title = "Catsaken",
